@@ -24,18 +24,18 @@
                     <tr>
                         <th align="left">
                             <a href="https://github.com/CMU-313/spring24-nodebb-git-goons/commits?author=vibhaarramreddy&since=2024-01-20T00:00:00-05:00&until=2024-03-29T23:59:00-05:00">
-                            Commit: 0
+                            Commit: 2
                             </a>
                         </th>
                     </tr>
                     <tr>
                         <th align="left">
-                            Addition: 0
+                            Addition: 12
                         </th>
                     </tr>
                     <tr>
                         <th align="left">
-                            Deletion: 0
+                            Deletion: 2
                         </th>
                     <tr>
                     <tr>
@@ -48,7 +48,7 @@
                     <tr>
                         <th align="left">
                             <a href="https://github.com/CMU-313/spring24-nodebb-git-goons/pulls?q=author%3Avibhaarramreddy+type%3Apr+created%3A2024-01-20T00:00:00-05:00..2024-03-29T23:59:00-05:00">
-                            PRs: 0
+                            PRs: 1
                             </a>
                         </th>
                     <tr>
