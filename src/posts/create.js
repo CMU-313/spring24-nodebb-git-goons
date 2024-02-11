@@ -13,6 +13,7 @@ const utils = require('../utils');
 
 // import { default as latexParser } from './latex_parser.js';
 
+/* * * Check src/posts/latex_parser.ts for code sanity checks * * */
 function latexParser(content) {
     // content with LaTeX wrappers removed
     let revisedContent = content;
@@ -52,6 +53,9 @@ module.exports = function (Posts) {
         const { uid } = data;
         const { tid } = data;
         // const content = data.content.toString();
+        /*
+         * Currently, parses LaTeX wrappers on a line-by-line basis
+         */
         const parseResult = latexParser(data.content.toString());
         const content = parseResult[1];
         const timestamp = data.timestamp || Date.now();
