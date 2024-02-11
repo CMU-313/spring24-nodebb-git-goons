@@ -4,15 +4,17 @@
 
 export default function (content: string) {
     // content with LaTeX wrappers removed
-    var revisedContent: string = content;
+    let revisedContent: string = content;
     // Indices in revisedContent that require LaTeX formatting
-    var indices: Array<[number, number]> = [];
+    const indices: Array<[number, number]> = [];
 
-    const regexp1: RegExp = /\$\$.+\$\$/; // Regexp for identifying beginning of LaTeX wrapper
-    const regexp2: RegExp = /\$\$/;       // Regexp for identifying end of LaTeX wrapper
+    // Regexp for identifying beginning of LaTeX wrapper
+    const regexp1 = /\$\$.+\$\$/;
+    // Regexp for identifying end of LaTeX wrapper
+    const regexp2 = /\$\$/;
 
     // Index of beginning of LaTeX wrapper
-    var start: number = revisedContent.search(regexp1);
+    let start: number = revisedContent.search(regexp1);
 
     while (start >= 0) {
         // Index of end of LaTeX wrapper
