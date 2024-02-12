@@ -78,6 +78,9 @@
 
     <small class="pull-right">
         <!-- IMPORT partials/topic/reactions.tpl -->
+        <a component="post/endorsement">
+            <span component="post/endorsement-text" class="<!-- IF !posts.endorsed -->hidden<!-- ENDIF !posts.endorsed -->">[[topic:post_endorsed]]</span>
+        </a>
         <span class="post-tools">
             <a component="post/endorse" href="#" class="no-select <!-- IF !privileges.topics:reply -->hidden<!-- ENDIF !privileges.topics:reply -->">[[topic:endorse]]</a>
             <a component="post/reply" href="#" class="no-select <!-- IF !privileges.topics:reply -->hidden<!-- ENDIF !privileges.topics:reply -->">[[topic:reply]]</a>

@@ -1,7 +1,7 @@
 'use strict';
 
-const db = require('../database');
-const plugins = require('../plugins');
+// const db = require('../database');
+// const plugins = require('../plugins');
 
 module.exports = function (Posts) {
     Posts.endorse = async function (pid, uid) {
@@ -23,16 +23,16 @@ module.exports = function (Posts) {
             Posts.getPostFields(pid, ['pid', 'uid']),
         ]);
 
-        db.sortedSetAdd(`post:${pid}:endorser`, Date.now(), uid);
-        postData.endorserUid = uid;
-        await Posts.setPostField(pid, 'endorserUid', postData.endorserUid);
+        // db.sortedSetAdd(`post:${pid}:endorser`, Date.now(), uid);
+        // postData.endorserUid = uid;
+        // await Posts.setPostField(pid, 'endorserUid', postData.endorserUid);
 
-        plugins.hooks.fire(`action:post.${type}`, {
-            pid: pid,
-            uid: uid,
-            owner: postData.uid,
-            current: 'endorse',
-        });
+        // plugins.hooks.fire(`action:post.${type}`, {
+        //     pid: pid,
+        //     uid: uid,
+        //     owner: postData.uid,
+        //     current: 'endorse',
+        // });
 
         return {
             post: postData,
