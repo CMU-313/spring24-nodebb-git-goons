@@ -11,12 +11,53 @@ const categories = require('../categories');
 const groups = require('../groups');
 const utils = require('../utils');
 
+// import { default as latexParser } from './latex_parser.js';
+
+/* * * Check src/posts/latex_parser.ts for code sanity checks * * */
+function latexParser(content) {
+    // content with LaTeX wrappers removed
+    let revisedContent = content;
+    // Indices in revisedContent that require LaTeX formatting
+    const indices = [];
+
+    // Regexp for identifying beginning of LaTeX wrapper
+    const regexp1 = /\$\$.+\$\$/;
+    // Regexp for identifying end of LaTeX wrapper
+    const regexp2 = /\$\$/;
+
+    // Index of beginning of LaTeX wrapper
+    let start = revisedContent.search(regexp1);
+
+    while (start >= 0) {
+        // Index of end of LaTeX wrapper
+        const end = (revisedContent.substring(start + 2).search(regexp2)) + (start + 2);
+
+        const prefix = revisedContent.substring(0, start);
+        const suffix = revisedContent.substring(end + 2);
+        const intermediate = revisedContent.substring(start + 2, end);
+
+        const newIdx = [start, start + intermediate.length];
+
+        indices.push(newIdx);
+
+        revisedContent = prefix + intermediate + suffix;
+
+        start = revisedContent.search(regexp1);
+    }
+    return [indices, revisedContent];
+}
+
 module.exports = function (Posts) {
     Posts.create = async function (data) {
         // This is an internal method, consider using Topics.reply instead
         const { uid } = data;
         const { tid } = data;
-        const content = data.content.toString();
+        // const content = data.content.toString();
+        /*
+         * Currently, parses LaTeX wrappers on a line-by-line basis
+         */
+        const parseResult = latexParser(data.content.toString());
+        const content = parseResult[1];
         const timestamp = data.timestamp || Date.now();
         const isMain = data.isMain || false;
 
