@@ -243,7 +243,7 @@
                     <tr>
                     <tr>
                         <th align="left">
-                            Comments: 0
+                            Comments: 1
                         </th>
                     <tr>
                 </table>
