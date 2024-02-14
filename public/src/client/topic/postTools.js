@@ -99,7 +99,6 @@ define('forum/topic/postTools', [
         });
 
         postContainer.on('click', '[component="post/endorse"]', function () {
-            return endorsePost(getData($(this), 'data-pid'));
         });
 
         $('.topic').on('click', '[component="topic/reply"]', function (e) {
@@ -364,18 +363,6 @@ define('forum/topic/postTools', [
             }
             const type = method === 'put' ? 'bookmark' : 'unbookmark';
             hooks.fire(`action:post.${type}`, { pid: pid });
-        });
-        return false;
-    }
-
-    function endorsePost(pid) {
-        const method = 'put';
-
-        api[method](`/posts/${pid}/endorse`, undefined, function (err) {
-            if (err) {
-                return alerts.error(err);
-            }
-            hooks.fire(`action:post.endorse`, { pid: pid });
         });
         return false;
     }
