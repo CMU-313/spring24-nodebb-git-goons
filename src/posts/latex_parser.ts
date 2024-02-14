@@ -1,7 +1,7 @@
 /**
- * function : string -> (int * int) list * string                [SML]
- *          : string -> Array<Array<[number, number]> | string>  [TS]
- *          : string -> Tuple[List[Tuple[int, int]], string]     [Python]
+ * function : string -> (int * int) list * string            [SML]
+ *          : string -> [Array<[number, number]>, string]    [TS]
+ *          : string -> Tuple[List[Tuple[int, int]], string] [Python]
  */
 
 export default function (content: string) {
