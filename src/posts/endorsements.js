@@ -1,7 +1,7 @@
 'use strict';
 
 // const db = require('../database');
-// const plugins = require('../plugins');
+const plugins = require('../plugins');
 
 module.exports = function (Posts) {
     Posts.endorse = async function (pid, uid) {
@@ -25,10 +25,17 @@ module.exports = function (Posts) {
 
         await Posts.setPostField(pid, 'endorsed', 1);
 
+        plugins.hooks.fire(`action:post.endorse`, {
+            pid: pid,
+            uid: uid,
+            owner: postData.uid,
+            current: 'endorsed',
+        });
+
 
         return {
             post: postData,
-            isEndorsement: isEndorsing,
+            isEndorsed: isEndorsing,
         };
     }
 };
