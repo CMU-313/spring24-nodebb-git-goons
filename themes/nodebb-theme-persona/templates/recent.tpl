@@ -4,6 +4,7 @@
     {{widgets.header.html}}
     {{{end}}}
 </div>
+
 <div class="recent"> 
     <div class="row">
         <div class="col-lg-12">
@@ -13,6 +14,7 @@
             </div>
         </div>
     </div>
+
     <div class="topic-list-header btn-toolbar">
         <div class="pull-left">
             <!-- IF canPost -->
