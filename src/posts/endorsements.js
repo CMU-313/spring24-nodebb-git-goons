@@ -23,16 +23,8 @@ module.exports = function (Posts) {
             Posts.getPostFields(pid, ['pid', 'uid']),
         ]);
 
-        // db.sortedSetAdd(`post:${pid}:endorser`, Date.now(), uid);
-        // postData.endorserUid = uid;
-        // await Posts.setPostField(pid, 'endorserUid', postData.endorserUid);
+        await Posts.setPostField(pid, 'endorsed', 1);
 
-        // plugins.hooks.fire(`action:post.${type}`, {
-        //     pid: pid,
-        //     uid: uid,
-        //     owner: postData.uid,
-        //     current: 'endorse',
-        // });
 
         return {
             post: postData,
