@@ -293,14 +293,14 @@
                     <tr>
                         <th align="left">
                             <a href="https://github.com/CMU-313/spring24-nodebb-git-goons/issues?q=author%3Adkcmu+type%3Aissue+created%3A2024-01-20T00:00:00-05:00..2024-02-29T23:59:00-05:00">
-                            Issues: 2
+                            Issues: 3
                             </a>
                         </th>
                     <tr>
                     <tr>
                         <th align="left">
                             <a href="https://github.com/CMU-313/spring24-nodebb-git-goons/pulls?q=author%3Adkcmu+type%3Apr+created%3A2024-01-20T00:00:00-05:00..2024-02-29T23:59:00-05:00">
-                            PRs: 1
+                            PRs: 2
                             </a>
                         </th>
                     <tr>

@@ -343,7 +343,7 @@ Deletion: 123
 </svg>
 <a xlink:href="https://github.com/CMU-313/spring24-nodebb-git-goons/issues?q=author%3Adkcmu+type%3Aissue+created%3A2024-01-20T00:00:00-05:00..2024-02-29T23:59:00-05:00">
 <text class="stat" x="25" y="12.5">
-Issue: 2
+Issue: 3
 </text>
 </a>
 </g>
@@ -353,7 +353,7 @@ Issue: 2
 </svg>
 <a xlink:href="https://github.com/CMU-313/spring24-nodebb-git-goons/pulls?q=author%3Adkcmu+type%3Apr+created%3A2024-01-20T00:00:00-05:00..2024-02-29T23:59:00-05:00">
 <text class="stat" x="25" y="12.5">
-Pr: 1
+Pr: 2
 </text>
 </a>
 </g>
