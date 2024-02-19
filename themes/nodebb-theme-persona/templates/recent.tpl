@@ -1,4 +1,30 @@
 <!-- IMPORT partials/breadcrumbs.tpl -->
+<style>
+    /* Customize the input field */
+    .form-control {
+        border: 2px solid #007bff; /* Blue */
+        border-right: none;
+        padding: 10px; 
+        border-radius: 5px 0 0 5px; /* Rounded corners for the left side */
+    }
+
+    /* Customize the search button on the recent page*/
+    .search-button {
+        background-color: #007bff; /* Blue*/
+        border: 2px solid #007bff;
+        border-left: none;
+        padding: 9px 12px;
+        border-radius: 0 15px 15px 0; /* Rounded corners for the right side*/
+        cursor: pointer; /* mouse cursor when hovering */
+    }
+
+    /* updates when buttons is being hovered over*/
+    .search-button:hover, .search-button:focus {
+        background-color: #0056b3; /* blue */
+        outline: none; 
+    }
+
+</style>
 <div data-widget-area="header">
     {{{each widgets.header}}}
     {{widgets.header.html}}
