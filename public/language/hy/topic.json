@@ -12,6 +12,8 @@
     "notify_me": "Տեղեկացեք այս թեմայում նոր պատասխանների մասին",
     "quote": "Մեջբերել",
     "reply": "Պատասխանել",
+    "endorse": "Endorse",
+	"post_endorsed": "An instructor endorsed this post",
     "replies_to_this_post": "%1 Պատասխաններ",
     "one_reply_to_this_post": "1 Պատասխան",
     "last_reply_time": "Վերջին պատասխանը",

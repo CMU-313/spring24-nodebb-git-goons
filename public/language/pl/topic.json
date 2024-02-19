@@ -12,6 +12,8 @@
     "notify_me": "Powiadamiaj mnie o nowych odpowiedziach w tym temacie",
     "quote": "Cytuj",
     "reply": "Odpowiedz",
+    "endorse": "Endorse",
+	"post_endorsed": "An instructor endorsed this post",
     "replies_to_this_post": "%1 odpowiedzi",
     "one_reply_to_this_post": "1 odpowiedź",
     "last_reply_time": "Ostatnia odpowiedź",
