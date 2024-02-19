@@ -12,6 +12,8 @@
     "notify_me": "Njoftohuni për komentet e reja në këtë temë",
     "quote": "Cito",
     "reply": "Komento",
+    "endorse": "Endorse",
+	"post_endorsed": "An instructor endorsed this post",
     "replies_to_this_post": "%1 Komento",
     "one_reply_to_this_post": "1 Koment",
     "last_reply_time": "Komenti i fundit",

@@ -12,6 +12,8 @@
     "notify_me": "Получавайте известия за новите отговори в тази тема",
     "quote": "Цитат",
     "reply": "Отговор",
+    "endorse": "Endorse",
+	"post_endorsed": "An instructor endorsed this post",
     "replies_to_this_post": "%1 отговора",
     "one_reply_to_this_post": "1 отговор",
     "last_reply_time": "Последен отговор",
