@@ -1,3 +1,38 @@
+<style>
+    a.no-select {
+        color: #007bff; /* Text color */
+        text-decoration: none; /* Removes the underline from the link */
+        cursor: pointer; /* Changes the mouse cursor to a pointer */
+    }
+    /* Styling for hover state */
+    a.no-select:hover {
+        text-decoration: underline; /* Adds underline on hover for better user experience */
+    }
+    /* Handling the 'hidden' class */
+    a.no-select.hidden {
+        display: none; /* Hides the link when the 'hidden' class is applied */
+    }
+    /* Style for the endorsement text */
+    span[component="post/endorsement-text"].no-select {
+        font-weight: bold; /* Makes the text bold */
+        color: gray; /* Sets the text color to green to indicate endorsement */
+        padding: 5px; /* Adds some padding around the text for better visibility */
+        border-radius: 3px; /* Optional: adds rounded corners to the element */
+        background-color: #d3d3d3; /* Optional: sets a light background color for the text */
+        display: inline-block; /* Ensures the padding and background color are applied */
+        margin-top: 10px; /* Adds some space above the endorsement text */
+    }
+    /* Additional style when the text is not hidden (post is endorsed) */
+    span[component="post/endorsement-text"].no-select:not(.hidden) {
+        animation: fadeIn 0.5s ease-in-out; /* Adds a fade-in animation for a smoother appearance */
+    }
+    /* Keyframes for the fade-in animation */
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+
 <div class="clearfix post-header">
     <div class="icon pull-left">
         <a href="<!-- IF posts.user.userslug -->{config.relative_path}/user/{posts.user.userslug}<!-- ELSE -->#<!-- ENDIF posts.user.userslug -->">
@@ -79,7 +114,7 @@
     <small class="pull-right">
         <!-- IMPORT partials/topic/reactions.tpl -->
         <a component="post/endorsement">
-            <span component="post/endorsement-text" class="<!-- IF !posts.endorsed -->hidden<!-- ENDIF !posts.endorsed -->">[[topic:post_endorsed]]</span>
+            <span component="post/endorsement-text" class="no-select <!-- IF !posts.endorsed -->hidden<!-- ENDIF !posts.endorsed -->">[[topic:post_endorsed]]</span>
         </a>
         <span class="post-tools">
             <a component="post/endorse" href="#" class="no-select <!-- IF !privileges.topics:reply -->hidden<!-- ENDIF !privileges.topics:reply -->">[[topic:endorse]]</a>
