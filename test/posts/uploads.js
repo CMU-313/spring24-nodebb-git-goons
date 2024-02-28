@@ -168,6 +168,7 @@ describe('upload methods', () => {
                 done();
             });
         });
+        
 
         it('should not associate a file that does not exist on the local disk', (done) => {
             async.waterfall([
@@ -177,6 +178,13 @@ describe('upload methods', () => {
                 assert.ifError(err);
                 assert.strictEqual(uploads.length, 5);
                 assert.strictEqual(false, uploads.includes('files/nonexistant.xls'));
+                done();
+            });
+        });
+
+        it('checks if not logged in for unendorse button', (done) => {
+            posts.unendorse({ uid: 0 }, null, (err, isModerator) => {
+                assert.equal(err.message, '[[error:not-logged-in]]');
                 done();
             });
         });
