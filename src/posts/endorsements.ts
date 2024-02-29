@@ -13,22 +13,14 @@ interface PostsFunctions {
     unendorse: (pid: number, uid: number) => Promise<PostEndorsement>;
 }
 
-export default function(Posts: PostsFunctions) {
-    Posts.endorse = async function (pid: number, uid: number) {
-        return await toggleEndorsement('bookmark', pid, uid);
-    };
-
-    Posts.unendorse = async function (pid: number, uid: number) {
-        return await toggleEndorsement('unbookmark', pid, uid);
-    };
-
+export default function (Posts: PostsFunctions) {
     async function toggleEndorsement(type: string, pid: number, uid: number) {
         const uidStr: string = uid.toString();
         if (parseInt(uidStr, 10) <= 0) {
             throw new Error('[[error:not-logged-in]]');
         }
 
-        const isEndorsing: boolean = true;
+        const isEndorsing = true;
 
         const [postData]: PostObject[] = await Promise.all([
             Posts.getPostFields(pid, ['pid', 'uid']),
@@ -36,7 +28,7 @@ export default function(Posts: PostsFunctions) {
 
         await Posts.setPostField(pid, 'endorsed', 1);
 
-        plugins.hooks.fire(`action:post.endorse`, {
+        await plugins.hooks.fire(`action:post.endorse`, {
             pid: pid,
             uid: uid,
             owner: postData.uid,
@@ -49,4 +41,12 @@ export default function(Posts: PostsFunctions) {
             isEndorsed: isEndorsing,
         };
     }
+
+    Posts.endorse = async function (pid: number, uid: number) {
+        return await toggleEndorsement('bookmark', pid, uid);
+    };
+
+    Posts.unendorse = async function (pid: number, uid: number) {
+        return await toggleEndorsement('unbookmark', pid, uid);
+    };
 }
