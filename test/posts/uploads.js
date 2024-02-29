@@ -168,7 +168,7 @@ describe('upload methods', () => {
                 done();
             });
         });
-        
+
 
         it('should not associate a file that does not exist on the local disk', (done) => {
             async.waterfall([
