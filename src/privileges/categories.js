@@ -79,21 +79,24 @@ privsCategories.list = async function (cid) {
     return payload;
 };
 
+// should i modify this function?
 privsCategories.get = async function (cid, uid) {
     const privs = [
         'topics:create', 'topics:read', 'topics:schedule',
         'topics:tag', 'read', 'posts:view_deleted',
     ];
 
-    const [userPrivileges, isAdministrator, isModerator] = await Promise.all([
+    const [userPrivileges, isAdministrator, isModerator, isInstruct] = await Promise.all([
         helpers.isAllowedTo(privs, uid, cid),
         user.isAdministrator(uid),
         user.isModerator(uid, cid),
+        user.isInstructor(uid),
     ]);
 
     const combined = userPrivileges.map(allowed => allowed || isAdministrator);
     const privData = _.zipObject(privs, combined);
     const isAdminOrMod = isAdministrator || isModerator;
+    const isInstructor = isInstruct;
 
     return await plugins.hooks.fire('filter:privileges.categories.get', {
         ...privData,
@@ -102,6 +105,7 @@ privsCategories.get = async function (cid, uid) {
         editable: isAdminOrMod,
         view_deleted: isAdminOrMod || privData['posts:view_deleted'],
         isAdminOrMod: isAdminOrMod,
+        isInstructor: isInstructor,
     });
 };
 
@@ -114,6 +118,11 @@ privsCategories.isAdminOrMod = async function (cid, uid) {
         user.isModerator(uid, cid),
     ]);
     return isAdmin || isMod;
+};
+
+privsCategories.isInstructor = async function (uid) {
+    const [isInstructor] = await Promise.all([user.isInstructor(uid)]);
+    return isInstructor;
 };
 
 privsCategories.isUserAllowedTo = async function (privilege, cid, uid) {

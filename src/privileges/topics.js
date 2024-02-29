@@ -22,11 +22,12 @@ privsTopics.get = async function (tid, uid) {
         'posts:delete', 'posts:view_deleted', 'read', 'purge',
     ];
     const topicData = await topics.getTopicFields(tid, ['cid', 'uid', 'locked', 'deleted', 'scheduled']);
-    const [userPrivileges, isAdministrator, isModerator, disabled] = await Promise.all([
+    const [userPrivileges, isAdministrator, isModerator, disabled, isInstruct] = await Promise.all([
         helpers.isAllowedTo(privs, uid, topicData.cid),
         user.isAdministrator(uid),
         user.isModerator(uid, topicData.cid),
         categories.getCategoryField(topicData.cid, 'disabled'),
+        user.isInstructor(uid),
     ]);
     const privData = _.zipObject(privs, userPrivileges);
     const isOwner = uid > 0 && uid === topicData.uid;
@@ -34,6 +35,7 @@ privsTopics.get = async function (tid, uid) {
     const editable = isAdminOrMod;
     const deletable = (privData['topics:delete'] && (isOwner || isModerator)) || isAdministrator;
     const mayReply = privsTopics.canViewDeletedScheduled(topicData, {}, false, privData['topics:schedule']);
+    const isInstructor = isInstruct;
 
     return await plugins.hooks.fire('filter:privileges.topics.get', {
         'topics:reply': (privData['topics:reply'] && ((!topicData.locked && mayReply) || isModerator)) || isAdministrator,
@@ -54,6 +56,7 @@ privsTopics.get = async function (tid, uid) {
         view_deleted: isAdminOrMod || isOwner || privData['posts:view_deleted'],
         view_scheduled: privData['topics:schedule'] || isAdministrator,
         isAdminOrMod: isAdminOrMod,
+        isInstructor: isInstructor,
         disabled: disabled,
         tid: tid,
         uid: uid,
@@ -172,6 +175,10 @@ privsTopics.isAdminOrMod = async function (tid, uid) {
     }
     const cid = await topics.getTopicField(tid, 'cid');
     return await privsCategories.isAdminOrMod(cid, uid);
+};
+
+privsTopics.isInstructor = async function (uid) {
+    return await privsCategories.isInstructor(uid);
 };
 
 privsTopics.canViewDeletedScheduled = function (topic, privileges = {}, viewDeleted = false, viewScheduled = false) {

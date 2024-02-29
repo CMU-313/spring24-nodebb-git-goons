@@ -31,6 +31,7 @@ privsPosts.get = async function (pids, uid) {
         'posts:edit': helpers.isAllowedTo('posts:edit', uid, uniqueCids),
         'posts:history': helpers.isAllowedTo('posts:history', uid, uniqueCids),
         'posts:view_deleted': helpers.isAllowedTo('posts:view_deleted', uid, uniqueCids),
+        isInstruct: user.isInstructor(uid),
     });
 
     const isModerator = _.zipObject(uniqueCids, results.isModerator);
@@ -46,6 +47,7 @@ privsPosts.get = async function (pids, uid) {
         const editable = (privData['posts:edit'][cid] && (results.isOwner[i] || results.isModerator)) || results.isAdmin;
         const viewDeletedPosts = results.isOwner[i] || privData['posts:view_deleted'][cid] || results.isAdmin;
         const viewHistory = results.isOwner[i] || privData['posts:history'][cid] || results.isAdmin;
+        const isInstructor = results.isInstruct;
 
         return {
             editable: editable,
@@ -55,6 +57,7 @@ privsPosts.get = async function (pids, uid) {
             read: privData.read[cid] || results.isAdmin,
             'posts:history': viewHistory,
             'posts:view_deleted': viewDeletedPosts,
+            isInstructor: isInstructor
         };
     });
 
