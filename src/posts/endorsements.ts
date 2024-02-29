@@ -13,7 +13,7 @@ interface PostsFunctions {
     unendorse: (pid: number, uid: number) => Promise<PostEndorsement>;
 }
 
-export default function (Posts: PostsFunctions) {
+export = function (Posts: PostsFunctions) {
     async function toggleEndorsement(type: string, pid: number, uid: number) {
         const uidStr: string = uid.toString();
         if (parseInt(uidStr, 10) <= 0) {

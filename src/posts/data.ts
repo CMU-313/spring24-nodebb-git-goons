@@ -31,6 +31,7 @@ interface PostObjectNew {
     category: CategoryObject;
     isMainPost: boolean;
     replies: number;
+    endorsed: boolean;
     editedISO: string;
     edited: number;
 }

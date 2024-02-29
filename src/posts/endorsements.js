@@ -11,9 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 const plugins_1 = __importDefault(require("../plugins"));
-function default_1(Posts) {
+module.exports = function (Posts) {
     function toggleEndorsement(type, pid, uid) {
         return __awaiter(this, void 0, void 0, function* () {
             const uidStr = uid.toString();
@@ -47,5 +46,4 @@ function default_1(Posts) {
             return yield toggleEndorsement('unbookmark', pid, uid);
         });
     };
-}
-exports.default = default_1;
+};
