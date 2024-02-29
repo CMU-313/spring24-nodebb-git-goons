@@ -86,6 +86,11 @@
             <span>[[user:age]]</span>
             <strong>{age}</strong>
             <!-- ENDIF age -->
+
+            <!-- IF accounttype -->
+            <span>User is a </span>
+            <strong>{accounttype}</strong>
+            <!-- ENDIF accounttype -->
         </div>
     </div>
 

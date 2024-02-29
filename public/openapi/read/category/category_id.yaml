@@ -87,6 +87,8 @@ get:
                         type: boolean
                       isAdminOrMod:
                         type: boolean
+                      isInstructor:
+                        type: boolean
                   showSelect:
                     type: boolean
                   showTopicTools:

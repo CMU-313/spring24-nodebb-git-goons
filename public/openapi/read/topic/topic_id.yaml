@@ -347,6 +347,8 @@ get:
                         type: boolean
                       isAdminOrMod:
                         type: boolean
+                      isInstructor:
+                        type: boolean
                       disabled:
                         type: number
                       tid:

@@ -153,6 +153,10 @@ User.isGlobalModerator = async function (uid) {
     return await privileges.users.isGlobalModerator(uid);
 };
 
+User.isInstructor = async function (uid) {
+    return await privileges.users.isInstructor(uid);
+};
+
 User.getPrivileges = async function (uid) {
     return await utils.promiseParallel({
         isAdmin: User.isAdministrator(uid),

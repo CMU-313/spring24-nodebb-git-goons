@@ -117,7 +117,9 @@
             <span component="post/endorsement-text" class="no-select <!-- IF !posts.endorsed -->hidden<!-- ENDIF !posts.endorsed -->">[[topic:post_endorsed]]</span>
         </a>
         <span class="post-tools">
-            <a component="post/endorse" href="#" class="no-select <!-- IF !privileges.topics:reply -->hidden<!-- ENDIF !privileges.topics:reply -->">[[topic:endorse]]</a>
+            <!-- IF privileges.isInstructor -->
+                <a component="post/endorse" href="#" class="no-select <!-- IF !privileges.topics:reply -->hidden<!-- ENDIF !privileges.topics:reply -->">[[topic:endorse]]</a>
+            <!-- ENDIF privileges.isInstructor -->
             <a component="post/reply" href="#" class="no-select <!-- IF !privileges.topics:reply -->hidden<!-- ENDIF !privileges.topics:reply -->">[[topic:reply]]</a>
             <a component="post/quote" href="#" class="no-select <!-- IF !privileges.topics:reply -->hidden<!-- ENDIF !privileges.topics:reply -->">[[topic:quote]]</a>
         </span>
