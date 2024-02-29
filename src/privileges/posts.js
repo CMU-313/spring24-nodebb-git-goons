@@ -57,7 +57,7 @@ privsPosts.get = async function (pids, uid) {
             read: privData.read[cid] || results.isAdmin,
             'posts:history': viewHistory,
             'posts:view_deleted': viewDeletedPosts,
-            isInstructor: isInstructor
+            isInstructor: isInstructor,
         };
     });
 
