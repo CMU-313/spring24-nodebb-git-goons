@@ -9,7 +9,6 @@ const privileges = require('../privileges');
 const categories = require('../categories');
 const meta = require('../meta');
 const utils = require('../utils');
-const { assert } = require('../middleware');
 
 const User = module.exports;
 
@@ -161,9 +160,10 @@ User.isInstructor = async function (uid) {
 // uid: number
 // privileges.users.isInstructor: Promise<number => boolean>
 // User.isInstructor: Promise<number> => boolean>
-assert(typeof uid === 'number');
-assert(typeof privileges.users.isInstructor === 'function');
-assert(typeof User.isInstructor === 'function');
+console.assert(typeof privileges.users.isInstructor === 'function',
+    `privileges.users.isInstructor has type ${typeof privileges.users.isInstructor}`);
+console.assert(typeof User.isInstructor === 'function',
+    `User.isInstructor has type ${typeof User.isInstructor}`);
 
 User.getPrivileges = async function (uid) {
     return await utils.promiseParallel({

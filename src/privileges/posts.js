@@ -12,7 +12,6 @@ const plugins = require('../plugins');
 const utils = require('../utils');
 const privsCategories = require('./categories');
 const privsTopics = require('./topics');
-const { assert } = require('../middleware');
 
 const privsPosts = module.exports;
 
@@ -52,7 +51,8 @@ privsPosts.get = async function (pids, uid) {
         const isInstructor = results.isInstruct;
         /* TYPE ANNOTATION */
         // isInstructor: boolean   |   result.isInstruct: boolean
-        assert(typeof results.isInstruct === 'boolean');
+        console.assert(typeof results.isInstruct === 'boolean',
+            `results.isInstruct has type of ${typeof results.isInstruct}`);
 
         return {
             editable: editable,

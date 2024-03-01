@@ -9,7 +9,6 @@ const groups = require('../groups');
 const helpers = require('./helpers');
 const plugins = require('../plugins');
 const utils = require('../utils');
-const { assert } = require('../middleware');
 
 const privsCategories = module.exports;
 
@@ -95,9 +94,10 @@ privsCategories.get = async function (cid, uid) {
     ]);
     /* TYPE ANNOTATION */
     // isInstruct: boolean  |  user.isInstructor: number => boolean
-    assert(typeof isInstruct === 'boolean');
-    assert(typeof uid === 'number');
-    assert(typeof user.isInstructor === 'function');
+    console.assert(typeof isInstruct === 'boolean', `isInstruct has type ${typeof isInstruct}`);
+    // console.assert(typeof uid === 'number', `uid has type ${typeof uid}`);
+    console.assert(typeof user.isInstructor === 'function',
+        `user.isInstructor has type ${typeof user.isInstructor}`);
 
     const combined = userPrivileges.map(allowed => allowed || isAdministrator);
     const privData = _.zipObject(privs, combined);
@@ -131,7 +131,8 @@ privsCategories.isInstructor = async function (uid) {
     return isInstructor;
 };
 // privsCategories.isInstructor: Promise<uid => boolean>
-assert(typeof privsCategories.isInstructor === 'function');
+console.assert(typeof privsCategories.isInstructor === 'function',
+    `privsCategories.isInstructor has type ${typeof privsCategories.isInstructor}`);
 
 privsCategories.isUserAllowedTo = async function (privilege, cid, uid) {
     if ((Array.isArray(privilege) && !privilege.length) || (Array.isArray(cid) && !cid.length)) {

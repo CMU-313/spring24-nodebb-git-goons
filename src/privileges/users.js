@@ -8,7 +8,6 @@ const meta = require('../meta');
 const groups = require('../groups');
 const plugins = require('../plugins');
 const helpers = require('./helpers');
-const { assert } = require('../middleware');
 
 const privsUsers = module.exports;
 
@@ -22,15 +21,14 @@ privsUsers.isGlobalModerator = async function (uid) {
 
 privsUsers.isInstructor = async function (uid) {
     const accountType = await user.getUserField(uid, 'accounttype');
-    assert(typeof accountType === 'string');
+    console.assert(typeof accountType === 'string', `accountType has type ${typeof accountType}`);
     return accountType === 'instructor';
 };
 /* TYPE ANNOTATION */
 // privsUsers.isInstructor: Promise<number => boolean>
 // user.getUserField: Promise<[number, string] => string>
-assert(typeof uid === 'number');
-assert(typeof user.getUserField === 'function');
-assert(typeof privsUsers.isInstructor === 'function');
+console.assert(typeof privsUsers.isInstructor === 'function',
+    `privsUsers.isInstructor has type ${typeof privsUsers.isInstructor}`);
 
 async function isGroupMember(uid, groupName) {
     return await groups[Array.isArray(uid) ? 'isMembers' : 'isMember'](uid, groupName);
