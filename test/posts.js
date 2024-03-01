@@ -31,6 +31,7 @@ describe('Post\'s', () => {
     let postData;
     let topicData;
     let cid;
+    let instructorUid;
 
     before((done) => {
         async.series({
@@ -49,6 +50,9 @@ describe('Post\'s', () => {
                     description: 'Test category created by testing script',
                 }, next);
             },
+            instructorUid: function (next) {
+                user.create({ username: 'instructor', 'account-type': 'instructor' }, next);
+            },
         }, (err, results) => {
             if (err) {
                 return done(err);
@@ -58,6 +62,7 @@ describe('Post\'s', () => {
             voteeUid = results.voteeUid;
             globalModUid = results.globalModUid;
             cid = results.category.cid;
+            instructorUid = results.instructorUid;
 
             topics.post({
                 uid: results.voteeUid,
@@ -299,6 +304,22 @@ describe('Post\'s', () => {
             assert.equal(data.isBookmarked, false);
             const hasBookmarked = await posts.hasBookmarked([postData.pid], voterUid);
             assert.equal(hasBookmarked[0], false);
+        });
+    });
+
+    describe('endorsing', () => {
+        it('instructor should endorse a post', async () => {
+            const data = await apiPosts.endorse({ uid: instructorUid }, { pid: postData.pid, room_id: `topic_${postData.tid}` });
+            assert.equal(data.isEndorsed, true);
+        });
+
+        it('should not allow endorsement without permissions', async () => {
+            try {
+                await apiPosts.endorse({ uid: 0 }, { pid: 0, room_id: `topic_${postData.tid}` });
+            } catch (err) {
+                return assert.equal(err.message, '[[error:not-logged-in]]');
+            }
+            assert(false);
         });
     });
 
