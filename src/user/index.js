@@ -9,6 +9,7 @@ const privileges = require('../privileges');
 const categories = require('../categories');
 const meta = require('../meta');
 const utils = require('../utils');
+const { assert } = require('../middleware');
 
 const User = module.exports;
 
@@ -156,6 +157,13 @@ User.isGlobalModerator = async function (uid) {
 User.isInstructor = async function (uid) {
     return await privileges.users.isInstructor(uid);
 };
+/* TYPE ANNOTATION */
+// uid: number
+// privileges.users.isInstructor: Promise<number => boolean>
+// User.isInstructor: Promise<number> => boolean>
+assert(typeof uid === 'number');
+assert(typeof privileges.users.isInstructor === 'function');
+assert(typeof User.isInstructor === 'function');
 
 User.getPrivileges = async function (uid) {
     return await utils.promiseParallel({
