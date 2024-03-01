@@ -12,6 +12,7 @@ const plugins = require('../plugins');
 const utils = require('../utils');
 const privsCategories = require('./categories');
 const privsTopics = require('./topics');
+const { assert } = require('../middleware');
 
 const privsPosts = module.exports;
 
@@ -32,6 +33,7 @@ privsPosts.get = async function (pids, uid) {
         'posts:history': helpers.isAllowedTo('posts:history', uid, uniqueCids),
         'posts:view_deleted': helpers.isAllowedTo('posts:view_deleted', uid, uniqueCids),
         isInstruct: user.isInstructor(uid),
+        // isInstruct: boolean   | user.isInstructor: number => boolean
     });
 
     const isModerator = _.zipObject(uniqueCids, results.isModerator);
@@ -48,6 +50,8 @@ privsPosts.get = async function (pids, uid) {
         const viewDeletedPosts = results.isOwner[i] || privData['posts:view_deleted'][cid] || results.isAdmin;
         const viewHistory = results.isOwner[i] || privData['posts:history'][cid] || results.isAdmin;
         const isInstructor = results.isInstruct;
+        // isInstructor: boolean   |   result.isInstruct: boolean
+        assert(typeof results.isInstruct === 'boolean');
 
         return {
             editable: editable,
