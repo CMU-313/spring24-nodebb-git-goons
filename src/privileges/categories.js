@@ -9,6 +9,7 @@ const groups = require('../groups');
 const helpers = require('./helpers');
 const plugins = require('../plugins');
 const utils = require('../utils');
+const { assert } = require('../middleware');
 
 const privsCategories = module.exports;
 
@@ -91,12 +92,18 @@ privsCategories.get = async function (cid, uid) {
         user.isAdministrator(uid),
         user.isModerator(uid, cid),
         user.isInstructor(uid),
+        // isInstruct: boolean  |  user.isInstructor: number => boolean
     ]);
+    assert(typeof isInstruct === 'boolean');
+    assert(typeof uid === 'number');
+    assert(typeof user.isInstructor === 'function');
 
     const combined = userPrivileges.map(allowed => allowed || isAdministrator);
     const privData = _.zipObject(privs, combined);
     const isAdminOrMod = isAdministrator || isModerator;
     const isInstructor = isInstruct;
+    // isInstructor: boolean
+    assert(typeof isInstructor === 'boolean');
 
     return await plugins.hooks.fire('filter:privileges.categories.get', {
         ...privData,
@@ -124,6 +131,8 @@ privsCategories.isInstructor = async function (uid) {
     const [isInstructor] = await Promise.all([user.isInstructor(uid)]);
     return isInstructor;
 };
+// privsCategories.isInstructor: Promise<uid => boolean>
+assert(typeof privsCategories.isInstructor === 'function');
 
 privsCategories.isUserAllowedTo = async function (privilege, cid, uid) {
     if ((Array.isArray(privilege) && !privilege.length) || (Array.isArray(cid) && !cid.length)) {
