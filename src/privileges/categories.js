@@ -92,8 +92,9 @@ privsCategories.get = async function (cid, uid) {
         user.isAdministrator(uid),
         user.isModerator(uid, cid),
         user.isInstructor(uid),
-        // isInstruct: boolean  |  user.isInstructor: number => boolean
     ]);
+    /* TYPE ANNOTATION */
+    // isInstruct: boolean  |  user.isInstructor: number => boolean
     assert(typeof isInstruct === 'boolean');
     assert(typeof uid === 'number');
     assert(typeof user.isInstructor === 'function');
@@ -102,8 +103,6 @@ privsCategories.get = async function (cid, uid) {
     const privData = _.zipObject(privs, combined);
     const isAdminOrMod = isAdministrator || isModerator;
     const isInstructor = isInstruct;
-    // isInstructor: boolean
-    assert(typeof isInstructor === 'boolean');
 
     return await plugins.hooks.fire('filter:privileges.categories.get', {
         ...privData,

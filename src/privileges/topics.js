@@ -10,6 +10,7 @@ const helpers = require('./helpers');
 const categories = require('../categories');
 const plugins = require('../plugins');
 const privsCategories = require('./categories');
+const { assert } = require('../middleware');
 
 const privsTopics = module.exports;
 
@@ -29,6 +30,13 @@ privsTopics.get = async function (tid, uid) {
         categories.getCategoryField(topicData.cid, 'disabled'),
         user.isInstructor(uid),
     ]);
+
+    /* TYPE ANNOTATION */
+    // isInstruct: boolean   |   user.isInstructor: number => boolean
+    assert(typeof isInstruct === 'boolean');
+    assert(typeof uid === 'number');
+    assert(typeof user.isInstructor === 'function');
+
     const privData = _.zipObject(privs, userPrivileges);
     const isOwner = uid > 0 && uid === topicData.uid;
     const isAdminOrMod = isAdministrator || isModerator;
@@ -180,6 +188,11 @@ privsTopics.isAdminOrMod = async function (tid, uid) {
 privsTopics.isInstructor = async function (uid) {
     return await privsCategories.isInstructor(uid);
 };
+/* TYPE ANNOTATION */
+// privsTopics.isInstructor: Promise<number => boolean>
+// privsCategories.isInstructor: Promise<number => boolean>
+assert(typeof privsTopics.isInstructor === 'function');
+assert(typeof privsCategories.isInstructor === 'function');
 
 privsTopics.canViewDeletedScheduled = function (topic, privileges = {}, viewDeleted = false, viewScheduled = false) {
     if (!topic) {

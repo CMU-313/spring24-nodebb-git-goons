@@ -50,6 +50,7 @@ privsPosts.get = async function (pids, uid) {
         const viewDeletedPosts = results.isOwner[i] || privData['posts:view_deleted'][cid] || results.isAdmin;
         const viewHistory = results.isOwner[i] || privData['posts:history'][cid] || results.isAdmin;
         const isInstructor = results.isInstruct;
+        /* TYPE ANNOTATION */
         // isInstructor: boolean   |   result.isInstruct: boolean
         assert(typeof results.isInstruct === 'boolean');
 
