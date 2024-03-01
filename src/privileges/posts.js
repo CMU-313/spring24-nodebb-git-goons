@@ -32,6 +32,7 @@ privsPosts.get = async function (pids, uid) {
         'posts:history': helpers.isAllowedTo('posts:history', uid, uniqueCids),
         'posts:view_deleted': helpers.isAllowedTo('posts:view_deleted', uid, uniqueCids),
         isInstruct: user.isInstructor(uid),
+        // isInstruct: boolean   | user.isInstructor: number => boolean
     });
 
     const isModerator = _.zipObject(uniqueCids, results.isModerator);
@@ -48,6 +49,10 @@ privsPosts.get = async function (pids, uid) {
         const viewDeletedPosts = results.isOwner[i] || privData['posts:view_deleted'][cid] || results.isAdmin;
         const viewHistory = results.isOwner[i] || privData['posts:history'][cid] || results.isAdmin;
         const isInstructor = results.isInstruct;
+        /* TYPE ANNOTATION */
+        // isInstructor: boolean   |   result.isInstruct: boolean
+        console.assert(typeof results.isInstruct === 'boolean',
+            `results.isInstruct has type of ${typeof results.isInstruct}`);
 
         return {
             editable: editable,

@@ -92,6 +92,12 @@ privsCategories.get = async function (cid, uid) {
         user.isModerator(uid, cid),
         user.isInstructor(uid),
     ]);
+    /* TYPE ANNOTATION */
+    // isInstruct: boolean  |  user.isInstructor: number => boolean
+    console.assert(typeof isInstruct === 'boolean', `isInstruct has type ${typeof isInstruct}`);
+    // console.assert(typeof uid === 'number', `uid has type ${typeof uid}`);
+    console.assert(typeof user.isInstructor === 'function',
+        `user.isInstructor has type ${typeof user.isInstructor}`);
 
     const combined = userPrivileges.map(allowed => allowed || isAdministrator);
     const privData = _.zipObject(privs, combined);
@@ -124,6 +130,9 @@ privsCategories.isInstructor = async function (uid) {
     const [isInstructor] = await Promise.all([user.isInstructor(uid)]);
     return isInstructor;
 };
+// privsCategories.isInstructor: Promise<uid => boolean>
+console.assert(typeof privsCategories.isInstructor === 'function',
+    `privsCategories.isInstructor has type ${typeof privsCategories.isInstructor}`);
 
 privsCategories.isUserAllowedTo = async function (privilege, cid, uid) {
     if ((Array.isArray(privilege) && !privilege.length) || (Array.isArray(cid) && !cid.length)) {

@@ -29,6 +29,14 @@ privsTopics.get = async function (tid, uid) {
         categories.getCategoryField(topicData.cid, 'disabled'),
         user.isInstructor(uid),
     ]);
+
+    /* TYPE ANNOTATION */
+    // isInstruct: boolean   |   user.isInstructor: number => boolean
+    console.assert(typeof isInstruct === 'boolean', `isInstruct has type of ${typeof isInstruct}`);
+    console.assert(typeof uid === 'number', `uid has type of ${typeof uid}`);
+    console.assert(typeof user.isInstructor === 'function',
+        `user.isInstructor has type of ${typeof user.isInstructor}`);
+
     const privData = _.zipObject(privs, userPrivileges);
     const isOwner = uid > 0 && uid === topicData.uid;
     const isAdminOrMod = isAdministrator || isModerator;
@@ -180,6 +188,13 @@ privsTopics.isAdminOrMod = async function (tid, uid) {
 privsTopics.isInstructor = async function (uid) {
     return await privsCategories.isInstructor(uid);
 };
+/* TYPE ANNOTATION */
+// privsTopics.isInstructor: Promise<number => boolean>
+// privsCategories.isInstructor: Promise<number => boolean>
+console.assert(typeof privsTopics.isInstructor === 'function',
+    `privsTopics.isInstructor has type of ${typeof privsTopics.isInstructor}`);
+console.assert(typeof privsCategories.isInstructor === 'function',
+    `privsCategories.isInstructor has type of ${typeof privsCategories.isInstructor}`);
 
 privsTopics.canViewDeletedScheduled = function (topic, privileges = {}, viewDeleted = false, viewScheduled = false) {
     if (!topic) {

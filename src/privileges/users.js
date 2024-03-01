@@ -21,8 +21,14 @@ privsUsers.isGlobalModerator = async function (uid) {
 
 privsUsers.isInstructor = async function (uid) {
     const accountType = await user.getUserField(uid, 'accounttype');
+    console.assert(typeof accountType === 'string', `accountType has type ${typeof accountType}`);
     return accountType === 'instructor';
 };
+/* TYPE ANNOTATION */
+// privsUsers.isInstructor: Promise<number => boolean>
+// user.getUserField: Promise<[number, string] => string>
+console.assert(typeof privsUsers.isInstructor === 'function',
+    `privsUsers.isInstructor has type ${typeof privsUsers.isInstructor}`);
 
 async function isGroupMember(uid, groupName) {
     return await groups[Array.isArray(uid) ? 'isMembers' : 'isMember'](uid, groupName);

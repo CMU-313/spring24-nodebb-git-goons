@@ -156,6 +156,14 @@ User.isGlobalModerator = async function (uid) {
 User.isInstructor = async function (uid) {
     return await privileges.users.isInstructor(uid);
 };
+/* TYPE ANNOTATION */
+// uid: number
+// privileges.users.isInstructor: Promise<number => boolean>
+// User.isInstructor: Promise<number> => boolean>
+console.assert(typeof privileges.users.isInstructor === 'function',
+    `privileges.users.isInstructor has type ${typeof privileges.users.isInstructor}`);
+console.assert(typeof User.isInstructor === 'function',
+    `User.isInstructor has type ${typeof User.isInstructor}`);
 
 User.getPrivileges = async function (uid) {
     return await utils.promiseParallel({
