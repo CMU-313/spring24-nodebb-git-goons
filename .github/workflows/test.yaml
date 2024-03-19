@@ -190,6 +190,8 @@ jobs:
 
       - name: Test mutation
         run: npm run mutation
+        with:
+          config-file: stryker.config.json
 
   finish:
     permissions:
