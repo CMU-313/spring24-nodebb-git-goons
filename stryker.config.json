@@ -16,7 +16,8 @@
     "test/build.js",
     "test/search.js",
     "test/utils.js",
-    "test/upgrade.js"
+    "test/upgrade.js",
+    "package.json"
   ],
   "mutate" : [
     "src/categories/*.js"
