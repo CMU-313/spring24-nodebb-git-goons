@@ -16,12 +16,9 @@
     "test/build.js",
     "test/search.js",
     "test/utils.js",
-    "test/upgrade.js",
-    "package.json"
-  ],
-  "mutate" : [
-    "src/categories/*.js"
-  ],
+    "test/upgrade.js"],
+    "mutate" : [
+      "src/categories/*.js"],
   "testRunner": "mocha",
   "testRunner_comment": "Take a look at https://stryker-mutator.io/docs/stryker-js/mocha-runner for information about the mocha plugin.",
   "coverageAnalysis": "perTest"
