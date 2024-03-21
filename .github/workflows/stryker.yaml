@@ -78,6 +78,8 @@ jobs:
 
       - run: cp install/package.json package.json
 
+      - run: cp install/stryker.config.json stryker.config.json
+
       - name: Install Node
         uses: actions/setup-node@v3
         with:
