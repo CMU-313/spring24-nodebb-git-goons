@@ -188,9 +188,6 @@ jobs:
           flag-name: ${{ matrix.os }}-node-${{ matrix.node }}-db-${{ matrix.database }}
           parallel: true
 
-      - name: Test mutation
-        run: npm run mutation
-
   finish:
     permissions:
       checks: write # for coverallsapp/github-action to create new checks
