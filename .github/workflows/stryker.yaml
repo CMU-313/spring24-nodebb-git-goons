@@ -32,7 +32,7 @@ jobs:
       - name: Install & Build
         run: |
           npm install
-          ./nodebb build
+          ./nodebb setup
 
       - name: Run Stryker Test
         run: npm run mutation
