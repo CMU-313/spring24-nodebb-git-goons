@@ -1,4 +1,5 @@
 var request = require('request')
+const fetch = require("node-fetch")
 
 const translatorApi = module.exports;
 
