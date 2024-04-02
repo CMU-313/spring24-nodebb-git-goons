@@ -10,6 +10,7 @@ const topics = require('../topics');
 const categories = require('../categories');
 const groups = require('../groups');
 const utils = require('../utils');
+const translate = require('../translate');
 
 // import { default as latexParser } from './latex_parser.js';
 
@@ -60,6 +61,7 @@ module.exports = function (Posts) {
         const content = parseResult[1];
         const timestamp = data.timestamp || Date.now();
         const isMain = data.isMain || false;
+        const [isEnglish, translatedContent] = await translate.translate(data)
 
         if (!uid && parseInt(uid, 10) !== 0) {
             throw new Error('[[error:invalid-uid]]');
@@ -76,6 +78,8 @@ module.exports = function (Posts) {
             tid: tid,
             content: content,
             timestamp: timestamp,
+            translatedContent: translatedContent,
+            isEnglish: isEnglish,
         };
 
         if (data.toPid) {
