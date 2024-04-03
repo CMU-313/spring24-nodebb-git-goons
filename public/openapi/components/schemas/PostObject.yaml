@@ -140,5 +140,3 @@ PostObject:
       type: boolean
     replies:
       type: number
-    isEnglish: 
-      type: boolean

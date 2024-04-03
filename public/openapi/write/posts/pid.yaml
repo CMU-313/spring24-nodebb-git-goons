@@ -67,9 +67,9 @@ get:
                   endorsed:
                     type: number
                   translatedContent:
-                    type: boolean
+                    type: string
                   isEnglish:
-                    type: boolean
+                    type: string
 put:
   tags:
     - posts
