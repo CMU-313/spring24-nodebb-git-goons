@@ -61,7 +61,7 @@ module.exports = function (Posts) {
         const content = parseResult[1];
         const timestamp = data.timestamp || Date.now();
         const isMain = data.isMain || false;
-        const [isEnglish, translatedContent] = await translate.translate(data)
+        const [isEnglish, translatedContent] = await translate.translate(data);
 
         if (!uid && parseInt(uid, 10) !== 0) {
             throw new Error('[[error:invalid-uid]]');
