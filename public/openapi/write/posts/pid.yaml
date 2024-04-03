@@ -66,6 +66,10 @@ get:
                     type: boolean
                   endorsed:
                     type: number
+                  translatedContent:
+                    type: boolean
+                  isEnglish:
+                    type: boolean
 put:
   tags:
     - posts
