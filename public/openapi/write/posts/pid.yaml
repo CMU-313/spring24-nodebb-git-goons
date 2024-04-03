@@ -69,7 +69,7 @@ get:
                   translatedContent:
                     type: string
                   isEnglish:
-                    type: string
+                    type: boolean
 put:
   tags:
     - posts
