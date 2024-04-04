@@ -16,7 +16,7 @@ permissions:
   contents: read
 
 env:
-  TRANSLATOR_API: "https://translator-service-7xrf7jc5qa-uc.a.run.app/"
+  TRANSLATOR_API: "https://translator-service-y3hjyydoeq-uc.a.run.app/"
   
 jobs:
   test:
