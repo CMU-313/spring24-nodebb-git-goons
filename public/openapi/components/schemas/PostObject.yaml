@@ -140,3 +140,7 @@ PostObject:
       type: boolean
     replies:
       type: number
+    isEnglish:
+      oneOf:
+      - type: boolean
+      - type: string
