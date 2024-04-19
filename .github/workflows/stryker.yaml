@@ -1,4 +1,4 @@
-name: Lint
+name: Run Stryker
 
 on:
   push:
@@ -8,27 +8,17 @@ on:
     branches:
       - main
 
-defaults:
-  run:
-    shell: bash
-
-permissions:
-  contents: read
-
-env:
-  TRANSLATOR_API: "https://translator-service-y3hjyydoeq-uc.a.run.app/"
-
 jobs:
-  lint:
+  stryker-test:
     permissions:
       checks: write # for coverallsapp/github-action to create new checks
       contents: read # for actions/checkout to fetch code
-    name: Lint
+    name: Run Stryker
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        node: [18]
+        node: [16]
     runs-on: ${{ matrix.os }}
     env:
       TEST_ENV: ${{ matrix.test_env || 'production' }}
@@ -42,6 +32,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - run: cp install/package.json package.json
 
       - run: cp install/package.json package.json
 
@@ -82,5 +74,5 @@ jobs:
         run: |
           node app --setup="${SETUP}" --ci="${CI}"
 
-      - name: Run ESLint
-        run: npm run lint
+      - name: Run Stryker
+        run: npm run mutation
